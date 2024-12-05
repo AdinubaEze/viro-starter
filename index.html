@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Viro is an ecommerce platform</title>
+    <style type="text/css">
+      html[data-theme="light"] {
+        background-color: #f7f7f7;
+      }
+      html[data-theme="dark"] {
+        background-color: #14141a;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+<script>
+  (function () {
+    const storageKey = "theme";
+
+    function setTheme(darkMode) {
+      document.documentElement.setAttribute(
+        "data-theme",
+        darkMode ? "dark" : "light"
+      );
+    }
+
+    const mql = window.matchMedia("(prefers-color-scheme: dark)");
+    const storedTheme = localStorage.getItem(storageKey);
+    const darkMode = storedTheme ? JSON.parse(storedTheme) : mql.matches;
+
+    setTheme(darkMode);
+    localStorage.setItem(storageKey, darkMode);
+  })();
+</script>
